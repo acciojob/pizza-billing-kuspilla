@@ -6,97 +6,91 @@ public class Pizza {
     private Boolean isVeg;
     private String bill;
 
-    boolean chese = false;
-    boolean Toppings = false;
-    boolean bag_price = false;
-    boolean Paperbag = false;
-    boolean Extra_Toppings = false;
+    public int paper_bag;
+    public int chese_price;
+    public int extra_toping_price;
+    public int total_price ;
+
+    public boolean bag ;
+    public boolean chese ;
+    public boolean bill_generated;
+     public boolean extra_Toping_b ;
 
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         // your code goes here
-        if(isVeg){
-            price += 300;
+        if( isVeg){
+            total_price = 300;
+
+            extra_toping_price = 70;
+          bill = "Base Price Of The Pizza: 300\n";
         }
         else{
-            price += 400;
+            // non veg
+            total_price = 400;
+            bill = "Base Price Of The Pizza: 400\n" ;
+            extra_toping_price = 120;
         }
+        paper_bag = 20;
+        chese_price = 80;
+
+        chese = false;
+        bag = false;
+        extra_Toping_b = false;
+        bill_generated = false;
+
     }
 
     public int getPrice(){
-        return this.price;
+        return this.total_price;
     }
 
     public void addExtraCheese(){
         // your code goes here
+         if( chese == false) {
+             total_price += chese_price;
+             chese = true;
+         }
 
-          price += 80;
-          this.chese = true;
     }
 
     public void addExtraToppings(){
         // your code goes here
-        if( this.isVeg)
-        price += 70;
-        else {
-            price += 120;
+        if( extra_Toping_b == false) {
+            total_price = extra_toping_price;
+            extra_Toping_b = true;
         }
-        Extra_Toppings = true;
-
     }
 
     public void addTakeaway(){
         // your code goes here
-        if(!Paperbag) {
-            price += 20;
-            this.Paperbag = true;
+        if(bag == false) {
+            total_price += paper_bag;
+            bag= true;
         }
     }
 
     public String getBill(){
         // your code goes here
-       /* Base Price Of The Pizza: 300
-        Extra Cheese Added: 80
-        Extra Toppings Added: 70
-        Paperbag Added: 20
-        Total Price: 470    */
 
+        if( bill_generated == false) {
 
-        String temp = "";
-        if(isVeg ){
-            temp += "Base Price Of The Pizza: 300\n";
-        }
-        else{
-            temp += "Base Price Of The Pizza: 400\n";
-        }
-
-        // Extra chese
-        if( chese)
-        temp += "Extra Cheese Added: 80\n";
-
-        // topings extra
-        if( Extra_Toppings) {
-            if (isVeg) {
-                temp += "Extra Toppings Added: 70\n";
-            } else {
-                temp += "  Extra Toppings Added: 120\n";
+            if(chese == true){
+                bill += "Extra Cheese Added: "+chese_price+"\n";
             }
+           if( extra_Toping_b == true){
+               bill += "Extra Toppings Added: " + total_price+ "\n";
+           }
+           if(bag == true){
+               bill += "Paperbag Added: " + paper_bag + "\n";
+           }
+
+           bill += "Total Price: "+ total_price+ "\n";
+
+            bill_generated = true;
         }
 
-        // paper bag
-        if( this.bag_price){
-            temp += "Paperbag Added: 20\n";
-        }
-
-//        else{
-//            temp += "Paperbag Added: 0\n";
-//        }
-
-        // total print
-        temp += "Total Price: "+this.price;
-           this.bill = temp;
-           System.out.println();
 
         return this.bill;
     }
