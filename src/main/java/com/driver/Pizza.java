@@ -58,7 +58,7 @@ public class Pizza {
     public void addExtraToppings(){
         // your code goes here
         if( extra_Toping_b == false) {
-            total_price = extra_toping_price;
+            total_price += extra_toping_price;
             extra_Toping_b = true;
         }
     }
@@ -80,7 +80,7 @@ public class Pizza {
                 bill += "Extra Cheese Added: "+chese_price+"\n";
             }
            if( extra_Toping_b == true){
-               bill += "Extra Toppings Added: " + total_price+ "\n";
+               bill += "Extra Toppings Added: " + extra_toping_price+ "\n";
            }
            if(bag == true){
                bill += "Paperbag Added: " + paper_bag + "\n";
